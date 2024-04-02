@@ -32,9 +32,9 @@ export const updateProductAsync = createAsyncThunk("product/updateProduct", asyn
         body: JSON.stringify({
             id: payload.id,
             name: payload.name,
-            email: payload.email,
-            phone: payload.phone,
-            address: { city: payload.city }
+            price: payload.price,
+            image: payload.image,
+            category: payload.category
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -65,9 +65,9 @@ const productSlice = createSlice({
             state.products = state.products.map((item)=> {
                 if(item.id === action.payload.id) {
                     item.name = action.payload.name;
-                    item.address.city = action.payload.address.city;
-                    item.phone = action.payload.phone;
-                    item.email = action.payload.email;
+                    item.price = action.payload.price;
+                    item.category = action.payload.category;
+                    item.image = action.payload.image;
                 }
                 return item;
             });

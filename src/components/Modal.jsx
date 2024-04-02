@@ -18,9 +18,9 @@ function UpdateModal(props) {
     props.handleClose(); // Call parent handleClose function
   };
   const name = useRef();
-  const email = useRef();
-  const phone = useRef();
-  const city = useRef();
+  const category = useRef();
+  const image = useRef();
+  const price = useRef();
 
   // Function to handle form submission
   const handleSubmit = (event) => {
@@ -29,9 +29,9 @@ function UpdateModal(props) {
     const data = {
       id: props.modalData.id,
       name: name.current.value,
-      city: city.current.value,
-      phone: phone.current.value,
-      email: email.current.value
+      price: price.current.value,
+      image: image.current.value,
+      category: category.current.value
     };
     dispatch(updateProductAsync(data)); // Dispatch action to update contact
     setValidated(true); // Set form validation to true
@@ -62,41 +62,41 @@ function UpdateModal(props) {
               <InputGroup hasValidation>
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                 <Form.Control
-                  type="email"
-                  placeholder="Email"
+                  type=""
+                  placeholder="Price"
                   aria-describedby="inputGroupPrepend"
-                  ref={email}
+                  ref={price}
                   defaultValue={props.modalData.price}
                   required
                 />
-                <Form.Control.Feedback type="invalid">Please provide a valid email.</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please provide a valid price.</Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
           </Row>
           <Row className="mb-3">
-            {/* Form group for city */}
+            {/* Form group for category */}
             <Form.Group as={Col} md="6" controlId="validationCustom03">
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="City"
-                ref={city}
+                placeholder="category"
+                ref={category}
                 defaultValue={props.modalData.category}
                 required
               />
-              <Form.Control.Feedback type="invalid">Please provide a city.</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide a category.</Form.Control.Feedback>
             </Form.Group>
             {/* Form group for phone */}
             <Form.Group as={Col} md="6" controlId="validationCustom05">
               <Form.Label>ImageUrl</Form.Label>
               <Form.Control
                 type="tel"
-                placeholder="Phone"
-                ref={phone}
+                placeholder="ImageUrl"
+                ref={image}
                 defaultValue={props.modalData.image}
                 required
               />
-              <Form.Control.Feedback type="invalid">Please provide a valid phone number.</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide a valid Image url.</Form.Control.Feedback>
             </Form.Group>
           </Row>
           {/* Button to submit changes */}
