@@ -228,8 +228,11 @@ th{
     z-index: -1;
     opacity: .7;
   }
-
-
+.countButton{
+    border-radius: 50%;
+    border:1px solid red;
+    
+}
 
 /* media quiries  */
 

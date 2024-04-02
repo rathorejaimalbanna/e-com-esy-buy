@@ -6,10 +6,14 @@ import { Outlet, Link } from "react-router-dom";
 import styles from "../App.module.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector } from "react-redux";
+import { cartSelectors } from "../Redux/cartReducer";
 
 // Header component renders the navigation bar
 function Header() {
-
+  const {cartItems} = useSelector(cartSelectors)
+  var num = cartItems.length
+  console.log(num)
   return (
     <>
       {/* Render navigation bar */}
@@ -62,7 +66,7 @@ function Header() {
                         alt=""
                         className={styles.icons}
                       />{" "}
-                      Cart
+                      Cart <button className={styles.countButton}>{num}</button>
                     </Link>
                     <Link to="/products" className={styles.link}>
                       <img

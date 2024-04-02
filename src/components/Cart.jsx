@@ -6,7 +6,6 @@ import styles from "../App.module.css"
 
 export default function Cart() {
   const {cartItems} = useSelector(cartSelectors);
-  console.log(cartItems)
   return (
     <div>
       {/* Render ProductCard for each product */}
