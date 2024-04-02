@@ -10,30 +10,34 @@ import { toast } from 'react-toastify';
 
 export default function Home() {
   const {products} = useSelector(productSelectors);
-  const {cartItems} = useSelector(cartSelectors)
-  console.log(cartItems)
+  const {cartItems} = useSelector(cartSelectors);
+  console.log(cartItems);
   const dispatch = useDispatch();
- // State to manage data for modal
-  useEffect(()=>{
-    // Fetch contacts from API when component mounts
-    if(!products.length >0){
 
-      dispatch(productAsync('https://my-json-server.typicode.com/rathorejaimalbanna/jsonapi/products'))
+  // State to manage data for modal
+  useEffect(() => {
+    // Fetch contacts from API when component mounts
+    if (!products.length > 0) {
+      dispatch(productAsync('https://my-json-server.typicode.com/rathorejaimalbanna/jsonapi/products'));
     }
-  },[dispatch,products.length]); 
+  }, [dispatch, products.length]); 
+
+  // Function to add item to cart
   function addCart(item) {
     const isPresent = cartItems.find((cartItem) => cartItem.name === item.name);
-    if(isPresent){
-      toast.success("Item quantity increased")
-      dispatch(cartActions.updateCart(item.name))
+    if (isPresent) {
+      toast.success("Item quantity increased");
+      dispatch(cartActions.updateCart(item.name));
+    } else {
+      toast.success("Item added to cart");
+      const  cartItem = {name:item.name, price:item.price, image:item.image, quantity:1};
+      dispatch(cartActions.addCart(cartItem));
     }
-    else{
-      toast.success("Item added to cart")
-    const  cartItem = {name:item.name,price:item.price,image:item.image,quantity:1}
-    dispatch(cartActions.addCart(cartItem))}
   };
-  function sortProducts(){
-    dispatch(productActions.sortProducts())
+
+  // Function to sort products by price
+  function sortProducts() {
+    dispatch(productActions.sortProducts());
   }
 
   // Render loading message if product data is not available
@@ -57,8 +61,7 @@ export default function Home() {
         <ProductCard key={id} item={item} addCart={addCart} type="product"/>
       )}
       </div>
-      </div>
+    </div>
     </>
   );
-
 }

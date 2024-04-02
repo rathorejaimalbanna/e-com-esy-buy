@@ -8,26 +8,31 @@ import { useDispatch } from 'react-redux';
 import { cartActions } from '../Redux/cartReducer';
 import { deleteProductAsync } from '../Redux/productReducer';
 
-
 // ProductCard component renders a card displaying product information
 function ProductCard(props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   // Function to add item to cart
   function addCartItem() {
-      props.addCart(props.item);
+    props.addCart(props.item);
   };
+
+  // Function to remove item from cart
   function removeCartItem(){
     toast.success("Item removed from cart")
     dispatch(cartActions.removeCart(props.item.name));
   };
+
+  // Function to handle deleting product
   function handleDelete(){
     toast.warn(`${props.item.name} removed from products`)
     dispatch(deleteProductAsync(props.item.name));
   };
-  function handleEdit(){
-    props.handleShow(props.item)
-  }
 
+  // Function to handle editing product
+  function handleEdit(){
+    props.handleShow(props.item);
+  }
 
   return (
     <Card className={styles.cardsDiv}>

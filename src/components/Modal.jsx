@@ -25,7 +25,7 @@ function UpdateModal(props) {
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Prepare data object with updated contact information
+    // Prepare data object with updated product information
     const data = {
       id: props.modalData.id,
       name: name.current.value,
@@ -33,7 +33,7 @@ function UpdateModal(props) {
       image: image.current.value,
       category: category.current.value
     };
-    dispatch(updateProductAsync(data)); // Dispatch action to update contact
+    dispatch(updateProductAsync(data)); // Dispatch action to update product
     setValidated(true); // Set form validation to true
     handleClose(); // Close modal
   };
@@ -56,13 +56,13 @@ function UpdateModal(props) {
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-            {/* Form group for email */}
+            {/* Form group for price */}
             <Form.Group as={Col} md="6" controlId="validationCustomUsername">
               <Form.Label>Price</Form.Label>
               <InputGroup hasValidation>
                 <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                 <Form.Control
-                  type=""
+                  type="number" // Changed type to 'number' assuming it's a numeric value
                   placeholder="Price"
                   aria-describedby="inputGroupPrepend"
                   ref={price}
@@ -86,17 +86,17 @@ function UpdateModal(props) {
               />
               <Form.Control.Feedback type="invalid">Please provide a category.</Form.Control.Feedback>
             </Form.Group>
-            {/* Form group for phone */}
+            {/* Form group for image URL */}
             <Form.Group as={Col} md="6" controlId="validationCustom05">
-              <Form.Label>ImageUrl</Form.Label>
+              <Form.Label>Image URL</Form.Label>
               <Form.Control
-                type="tel"
-                placeholder="ImageUrl"
+                type="url" // Changed type to 'url' assuming it's a valid URL
+                placeholder="Image URL"
                 ref={image}
                 defaultValue={props.modalData.image}
                 required
               />
-              <Form.Control.Feedback type="invalid">Please provide a valid Image url.</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please provide a valid Image URL.</Form.Control.Feedback>
             </Form.Group>
           </Row>
           {/* Button to submit changes */}

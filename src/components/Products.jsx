@@ -6,19 +6,24 @@ import styles from "../App.module.css"
 import UpdateModal from './Modal'
 
 export default function Products() {
-  const {products}  = useSelector(productSelectors)
+  const {products}  = useSelector(productSelectors);
   const [show,setShow] =  useState(false); // State to manage modal visibility
   const [modalData,setModalData] = useState({name:"",city:"",email:"",phone:""});
 
+  // Function to handle closing modal
   function handleClose(){
-    setShow(false)
+    setShow(false);
   };
+
+  // Function to handle showing modal with item data
   function handleShow(item){
-    setModalData(item)
-    setShow(true)
+    setModalData(item);
+    setShow(true);
   }
+
   return (
     <div>
+      {/* Render modal if show state is true */}
       {show && <div className={styles.modalContainer}>
         <div className={styles.modalDiv}>
           <UpdateModal handleClose={handleClose} modalData={modalData} />

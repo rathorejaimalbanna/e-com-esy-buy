@@ -11,9 +11,9 @@ import { cartSelectors } from "../Redux/cartReducer";
 
 // Header component renders the navigation bar
 function Header() {
-  const {cartItems} = useSelector(cartSelectors)
-  var num = cartItems.length
-  console.log(num)
+  const {cartItems} = useSelector(cartSelectors);
+  var num = cartItems.length; // Getting the number of items in the cart
+  console.log(num); // Logging the number of items in the cart
   return (
     <>
       {/* Render navigation bar */}
@@ -68,6 +68,7 @@ function Header() {
                       />{" "}
                       Cart <button className={styles.countButton}>{num}</button>
                     </Link>
+                    {/* Render products link */}
                     <Link to="/products" className={styles.link}>
                       <img
                         src="./images/product.png"
@@ -76,6 +77,7 @@ function Header() {
                       />{" "}
                       Products
                     </Link>
+                    {/* Render user link */}
                       <Link to="/" className={styles.link}>
                         {" "}
                         <img
